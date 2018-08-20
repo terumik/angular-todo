@@ -1,0 +1,14 @@
+<!-- Single Board -->
+<div class="container">
+
+  <div class="row justify-content-between">
+    <!-- List of ToDo Tasks -->
+    <div class="col-sm-6">
+      <app-list [title]="'ToDo'" [tasks]="todoTasks" [hasAddButton]="true" [acceptingStatus]="true"></app-list>
+    </div>
+    <!-- List of Completed Tasks-->
+    <div class="col-sm-6 mt-5 mt-sm-0">
+      <app-list [title]="'DONE'" [tasks]="completedTasks" [acceptingStatus]="false"></app-list>
+    </div>
+  </div> <!-- end .row -->
+</div> <!-- end .containter -->

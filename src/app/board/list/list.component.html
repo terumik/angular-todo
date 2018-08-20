@@ -1,0 +1,27 @@
+
+<div class="row list--header mx-sm-1">
+  <div class="col-12 text-center">
+      {{ title }}
+      <i class="material-icons align-text-bottom list--sort"
+      (click)=orderByDate(sortCondition)>{{arrow}}</i>
+  </div>
+</div>
+<div class="row list--body mx-sm-1"
+  mwlDroppable
+  (drop)="onUpdateStatus($event)"
+  >
+
+  <!-- List of Tasks -->
+  <div class="mb-3 col-11 mx-auto list--item"
+    *ngFor="let t of tasks"
+    mwlDraggable
+    dropData="{{t.id}} {{t.status}}"
+    >
+    <app-task [task]=t></app-task>
+  </div>
+
+  <!-- Add Button For Creating a New Task -->
+  <app-create-modal *ngIf="hasAddButton"></app-create-modal>
+
+</div>
+

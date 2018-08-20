@@ -1,0 +1,11 @@
+@import "../../style-variables.scss";
+
+.navbar{
+  background-color: $primary;
+  color: #fff;
+  box-shadow: #5c5c5c 0px -10px 20px 10px;
+  letter-spacing: 2px;
+}
+a{
+  color: #fff;
+}

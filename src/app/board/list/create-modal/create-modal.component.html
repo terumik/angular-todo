@@ -1,0 +1,46 @@
+<!-- Add New Task Button -->
+<span class="list--add" (click)="onOpenModal(addTask)">
+  <i class="material-icons list--add-icon align-middle">add_circle</i> Add New
+</span>
+
+<!-- Modal Window for Adding a Task -->
+<ngx-smart-modal #addTask identifier="addTask">
+  <h2 class="h5">Add a New Task</h2>
+  <form ngNativeValidate (ngSubmit)="onSubmit(addTask)" class="m-3 ml-4">
+    <div class="form-group row">
+      <label class="col-8">Task:
+        <input
+        type="text"
+        class="form-control"
+        [(ngModel)]="task.taskName"
+        name="task-name"
+        required>
+      </label>
+    </div>
+    <div class="form-group row">
+      <label class="col-8">Due:
+        <input class="form-control"
+        name="add-task--due"
+        placeholder="Set a Due Date"
+        [owlDateTime]="addTaskDue"
+        [owlDateTimeTrigger]="addTaskDue"
+        [min]="validDue"
+        #dateTime="ngModel"
+        [(ngModel)]="task.due">
+        <owl-date-time #addTaskDue pickerMode='dialog'></owl-date-time>
+      </label>
+    </div>
+
+    <div class="form-group row">
+      <label class="col-10">Note:
+        <textarea
+        type="text"
+        class="form-control"
+        [(ngModel)]="task.taskDescription"
+        name="task-task_description"></textarea>
+      </label>
+    </div>
+    <button class="btn btn-pink col-5" type="submit">Save</button>
+    <button class="btn btn-gray col-3" type="button" (click)="addTask.close()">Close</button>
+  </form>
+</ngx-smart-modal>
