@@ -21,13 +21,6 @@ export class ListComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.getTasks();
-  }
-
-  getTasks() {
-    this.taskService.getAllTasks().subscribe(data => {
-      this.tasks = data;
-    });
   }
 
   // Update the Completion Status

@@ -1,5 +1,3 @@
-// 2. define a service. set data and make it observable (next: palettes.component.ts)
-
 import { Injectable } from '@angular/core';
 import { Task } from './board/task/task.model';
 import { Observable, BehaviorSubject } from 'rxjs';
