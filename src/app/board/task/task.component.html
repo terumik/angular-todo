@@ -2,11 +2,11 @@
   <i class="material-icons icon-edit">edit</i>
   <button class="btn btn-text task--remove-button" (click)=onRemoveTask(task.id)>&times;</button>
   <div class="row pl-3">
-    {{taskName}}
+    {{task.taskName}}
   </div>
   <div class="row" *ngIf="task.due" class="mt-2 {{isOverdue}}">
     <i class="material-icons align-middle">timer</i>
-    {{taskDue | date: 'MMM d HH:mm'}}
+    {{task.due | date: 'MMM d HH:mm'}}
   </div>
 </div>
 
@@ -14,19 +14,19 @@
 <ngx-smart-modal
   #taskDetails
   identifier="taskDetails"
-  (onAnyCloseEventFinished)="addZindex()"
+  (onAnyCloseEventFinished)="onDetailsClosed()"
   class="modal--details">
   <h2 class="h5">Details</h2>
   <div *ngIf=task>
-    <form ngNativeValidate (ngSubmit)="onUpdate(taskDetails)" class="modal--details m-3 ml-4">
+    <form ngNativeValidate [formGroup]="updateTaskForm" class="modal--details m-3 ml-4">
       <div class="form-group row">
         <label class="col-8">Task:
           <i class="material-icons icon-edit align-baseline m-1">edit</i>
           <input
           type="text"
           class="form-control"
-          name="task--updated-name"
-          [(ngModel)]="task.taskName"
+          formControlName="nameInput"
+          value={{task.taskName}}
           required>
         </label>
       </div>
@@ -34,8 +34,7 @@
         <label class="col-8">Due:
           <i class="material-icons icon-edit align-baseline m-1">edit</i>
           <input class="form-control"
-          name="task--updated-due"
-          [(ngModel)]="task.due"
+          formControlName="dueInput"
           [owlDateTime]="taskDetailsDue"
           [owlDateTimeTrigger]="taskDetailsDue"
           [min]="validDue">
@@ -48,11 +47,11 @@
           <textarea
           type="text"
           class="form-control"
-          name="task--updated-description"
-          [(ngModel)]="task.taskDescription"></textarea>
+          formControlName="descriptionInput"
+          >{{task.taskDescription}}</textarea>
         </label>
       </div>
-      <button class="btn btn-pink col-5" type="submit">Update</button>
+      <button class="btn btn-pink col-5" type="button" (click)="onUpdate(taskDetails)">Update</button>
       <button class="btn btn-gray col-3" type="button" (click)="taskDetails.close()">Close</button>
     </form>
   </div>

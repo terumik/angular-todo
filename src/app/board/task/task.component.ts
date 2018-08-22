@@ -1,6 +1,7 @@
 import { Component, Input, OnInit, ElementRef } from '@angular/core';
 import { Task } from './task.model';
 import { TaskService } from '../../task.service';
+import { FormGroup, FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-task',
@@ -13,8 +14,7 @@ export class TaskComponent implements OnInit {
   @Input() task: Task;
   validDue = new Date();
   isOverdue: string;
-  taskName: string;
-  taskDue: Date;
+  updateTaskForm: FormGroup;
 
   constructor(
     private taskService: TaskService,
@@ -23,8 +23,11 @@ export class TaskComponent implements OnInit {
 
   ngOnInit() {
     this.isTaskOverdue();
-    this.taskName = this.task.taskName;
-    this.taskDue = this.task.due;
+    this.updateTaskForm = new FormGroup({
+      nameInput: new FormControl(this.task.taskName),
+      descriptionInput: new FormControl(this.task.taskDescription),
+      dueInput: new FormControl(this.task.due)
+    });
   }
 
   // Remove a Task
@@ -40,15 +43,28 @@ export class TaskComponent implements OnInit {
 
   // Update the Task
   onUpdate(detailModal) {
-    this.taskName = this.task.taskName;
-    this.taskDue = this.task.due;
-    this.taskService.updateTask(this.task);
+    const updatedTask = new Task (
+      this.task.id,
+      this.updateTaskForm.value.nameInput,
+      this.task.status,
+      this.updateTaskForm.value.descriptionInput,
+      this.updateTaskForm.value.dueInput
+    );
+    this.taskService.updateTask(updatedTask);
     detailModal.close();
   }
 
-  // Add z-index=1 when the Details Modal is Closed
-  addZindex() {
+  // When the Details Modal is Closed
+  onDetailsClosed() {
+    // Add z-index=1 when the Details Modal is Closed
     this.elmentRef.nativeElement.parentElement.style['zIndex'] = '1';
+
+    // Reset the Values
+    this.updateTaskForm = new FormGroup({
+      nameInput: new FormControl(this.task.taskName),
+      descriptionInput: new FormControl(this.task.taskDescription),
+      dueInput: new FormControl(this.task.due)
+    });
   }
 
   // Add .task--overdue when the Task is Overdue
