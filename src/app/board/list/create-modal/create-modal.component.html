@@ -1,5 +1,8 @@
 <!-- Add New Task Button -->
-<span class="list--add" (click)="onOpenModal(addTask)">
+<span class="list--add"
+(click)="onOpenModal(addTask)"
+(keydown)="onOpenModal(addTask, $event)"
+tabindex="1">
   <i class="material-icons list--add-icon align-middle">add_circle</i> Add New
 </span>
 

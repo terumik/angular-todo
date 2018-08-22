@@ -1,6 +1,8 @@
 <div (click)='showDetails(taskDetails)'
+  (keydown)='showDetails(taskDetails, $event)'
   class="p-3 task"
-  aria-roledescription="draggable item">
+  aria-roledescription="draggable item"
+  tabindex="2">
   <h4 class="sr-only">Task</h4>
   <i class="material-icons icon-edit">edit</i>
   <button class="btn btn-text task--remove-button"
@@ -29,6 +31,7 @@
         <label class="col-8">Task:
           <i class="material-icons icon-edit align-baseline m-1">edit</i>
           <input
+          tabindex="2"
           type="text"
           class="form-control"
           formControlName="nameInput"
@@ -40,6 +43,7 @@
         <label class="col-8">Due:
           <i class="material-icons icon-edit align-baseline m-1">edit</i>
           <input class="form-control"
+          tabindex="2"
           formControlName="dueInput"
           [owlDateTime]="taskDetailsDue"
           [owlDateTimeTrigger]="taskDetailsDue"
@@ -51,14 +55,15 @@
         <label class="col-10">Note:
           <i class="material-icons icon-edit align-baseline m-1">edit</i>
           <textarea
+          tabindex="2"
           type="text"
           class="form-control"
           formControlName="descriptionInput"
           >{{task.taskDescription}}</textarea>
         </label>
       </div>
-      <button class="btn btn-pink col-5" type="button" (click)="onUpdate(taskDetails)">Update</button>
-      <button class="btn btn-gray col-3" type="button" (click)="taskDetails.close()">Close</button>
+      <button class="btn btn-pink col-5" type="button" tabindex="2" (click)="onUpdate(taskDetails)">Update</button>
+      <button class="btn btn-gray col-3" type="button" tabindex="2" (click)="taskDetails.close()">Close</button>
     </form>
   </div>
 </ngx-smart-modal>

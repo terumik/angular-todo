@@ -4,7 +4,9 @@
       <h3 class="h6 d-inline">{{ title }}</h3>
       <i class="material-icons align-text-bottom list--sort"
       aria-label="order by due"
-      (click)=orderByDate(sortCondition)>{{arrow}}</i>
+      tabindex="3"
+      (click)="orderByDate(sortCondition)"
+      (keydown)="orderByDate(sortCondition, $event)">{{arrow}}</i>
   </div>
 </div>
 <div class="row list--body mx-sm-1"

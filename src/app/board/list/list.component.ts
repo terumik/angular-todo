@@ -33,19 +33,21 @@ export class ListComponent implements OnInit {
     }
   }
 
-  orderByDate(condition) {
-    if (condition === 'dueAsc') {
-      this.tasks.sort(
-        (t1, t2) => this.byDate(t1, t2)
-      );
-      this.arrow = 'arrow_drop_up';
-      this.sortCondition = 'dueDesc';
-    } else {
-      this.tasks.sort(
-        (t1, t2) => this.byDate(t2, t1)
-      );
-      this.arrow = 'arrow_drop_down';
-      this.sortCondition = 'dueAsc';
+  orderByDate(condition, event) {
+    if (event === undefined || (event !== undefined && event.key === 'Enter')) {
+      if (condition === 'dueAsc') {
+        this.tasks.sort(
+          (t1, t2) => this.byDate(t1, t2)
+        );
+        this.arrow = 'arrow_drop_up';
+        this.sortCondition = 'dueDesc';
+      } else {
+        this.tasks.sort(
+          (t1, t2) => this.byDate(t2, t1)
+        );
+        this.arrow = 'arrow_drop_down';
+        this.sortCondition = 'dueAsc';
+      }
     }
   }
 

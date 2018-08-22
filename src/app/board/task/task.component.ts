@@ -36,8 +36,10 @@ export class TaskComponent implements OnInit {
   }
 
   // Display Details in a Modal
-  showDetails(detailModal) {
-    detailModal.open();
+  showDetails(detailModal, event?) {
+    if (event === undefined || (event !== undefined && event.key === 'Enter')) {
+      detailModal.open();
+    }
     this.elmentRef.nativeElement.parentElement.style['zIndex'] = 'auto';
   }
 

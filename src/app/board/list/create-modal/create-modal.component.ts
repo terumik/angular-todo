@@ -22,9 +22,11 @@ export class CreateModalComponent implements OnInit {
   }
 
   // Open a Modal Window for Adding a New Task
-  onOpenModal(addTaskModal) {
+  onOpenModal(addTaskModal, event?) {
     this.task = new Task(null, '', false, '', null);
-    addTaskModal.open();
+    if (event === undefined || (event !== undefined && event.key === 'Enter')) {
+      addTaskModal.open();
+    }
   }
 
   // Add a New Task
