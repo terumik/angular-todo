@@ -1,16 +1,18 @@
 
 <div class="row list--header mx-sm-1">
   <div class="col-12 text-center">
-      {{ title }}
+      <h3 class="h6 d-inline">{{ title }}</h3>
       <i class="material-icons align-text-bottom list--sort"
+      aria-label="order by due"
       (click)=orderByDate(sortCondition)>{{arrow}}</i>
   </div>
 </div>
 <div class="row list--body mx-sm-1"
   mwlDroppable
   (drop)="onUpdateStatus($event)"
+  aria-roledescription="dropppable field"
   >
-
+  <h3 class="sr-only">List of Tasks</h3>
   <!-- List of Tasks -->
   <div class="mb-3 col-11 mx-auto list--item"
     *ngFor="let t of tasks"

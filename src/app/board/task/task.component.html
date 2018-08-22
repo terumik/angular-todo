@@ -1,7 +1,13 @@
-<div (click)='showDetails(taskDetails)' class="p-3 task">
+<div (click)='showDetails(taskDetails)'
+  class="p-3 task"
+  aria-roledescription="draggable item">
+  <h4 class="sr-only">Task</h4>
   <i class="material-icons icon-edit">edit</i>
-  <button class="btn btn-text task--remove-button" (click)=onRemoveTask(task.id)>&times;</button>
+  <button class="btn btn-text task--remove-button"
+    aria-label="remove task"
+    (click)=onRemoveTask(task.id)>&times;</button>
   <div class="row pl-3">
+    <h5 class="sr-only">Task Name</h5>
     {{task.taskName}}
   </div>
   <div class="row" *ngIf="task.due" class="mt-2 {{isOverdue}}">
@@ -16,7 +22,7 @@
   identifier="taskDetails"
   (onAnyCloseEventFinished)="onDetailsClosed()"
   class="modal--details">
-  <h2 class="h5">Details</h2>
+  <h3 class="h5">Details</h3>
   <div *ngIf=task>
     <form ngNativeValidate [formGroup]="updateTaskForm" class="modal--details m-3 ml-4">
       <div class="form-group row">
