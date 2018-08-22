@@ -33,7 +33,7 @@ export class ListComponent implements OnInit {
     }
   }
 
-  orderByDate(condition, event) {
+  orderByDate(condition, event?) {
     if (event === undefined || (event !== undefined && event.key === 'Enter')) {
       if (condition === 'dueAsc') {
         this.tasks.sort(
